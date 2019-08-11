@@ -1,14 +1,21 @@
 import React from 'react'
+import Tone from 'tone'
+
+const synth = new Tone.Synth().toMaster()
 
 class App extends React.Component {
-  constructor() {
-    super(...arguments)
+  playSound() {
+    synth.triggerAttackRelease("C4", "8n")
   }
 
   render() {
     return (
       <div>
-        Hello World!
+        <button
+          className="btn btn-primary"
+          onClick={ this.playSound }>
+          Hello World
+        </button>
       </div>
     )
   }

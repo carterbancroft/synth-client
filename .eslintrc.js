@@ -10,13 +10,14 @@ const ERROR = 2
 module.exports = {
   'parserOptions': {
     'ecmaVersion': 2018,
+    "sourceType": "module",
   },
 
   // Inherit from eslint's recommended settings
   'extends': [
     'eslint:recommended',
     'plugin:react/recommended'
-  ]
+  ],
 
   // Make these includes available so eslint doesn't complain about it
   'env': {

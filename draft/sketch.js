@@ -25,10 +25,15 @@ document.documentElement.addEventListener('mousedown', () => {
 })
 
 function createGrid() {
-  for (let i = 1; i < 33; i++) {
+  for (let i = 1; i < 17; i++) {
     const div = document.createElement('div')
     div.setAttribute('id', `container-${i}`)
     div.setAttribute('class', 'container')
+
+    div.addEventListener('click', () => {
+      div.setAttribute('class', 'container enabled')
+    })
+
     document.querySelector('#grid').appendChild(div)
   }
 }
@@ -58,19 +63,24 @@ function setup() {
 }
 
 function song(time) {
-  document.querySelector(`#container-${prev}`).style = ``
-  document.querySelector(`#container-${prev+16}`).style = ``
+  prev.style = ``
+  const currentDiv = document.querySelector(`#container-${pos+1}`)
   
-  if (pos % 4 === 0) {
+  if (currentDiv.className.includes('enabled')) {
+    bassSynth.triggerAttackRelease('C1', '8n', time)
+    currentDiv.style = `background-color: #b4f2c4`
+  }
+
+  /*if (pos % 4 === 0) {
     bassSynth.triggerAttackRelease('C1', '8n', time)
     document.querySelector(`#container-${pos+1}`).style = `background-color: #89d99e`
   }
   else if (pos % 4 !== 1) {
     cymbalSynth.triggerAttackRelease('32n', time, 0.3)
-    document.querySelector(`#container-${pos+17}`).style = `background-color: red`
-  }
+    document.querySelector(`#container-${pos+1}`).style = `background-color: red`
+  }*/
 
-  prev = pos + 1
+  prev = currentDiv
   pos = (pos + 1) % 16
 }
 

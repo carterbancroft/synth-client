@@ -24,6 +24,10 @@ canvas {
   margin: 2px;
 }
 
+.enabled {
+  background-color: #89d99e;
+}
+
 #grid {
   width: 500px;
 }

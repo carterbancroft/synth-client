@@ -6,16 +6,34 @@ let cymbalSynth
 let pos
 let prev
 
+createGrid()
+
+let isPlaying = false
+
 document.documentElement.addEventListener('mousedown', () => {
-  mouse_IsDown = true
   if (Tone.context.state !== 'running') {
     Tone.context.resume()
     setup()
   }
+
+  if (!isPlaying)
+    beat.start(0)
+  else
+    beat.stop()
+
+  isPlaying = !isPlaying
 })
 
+function createGrid() {
+  for (let i = 1; i < 17; i++) {
+    const div = document.createElement('div')
+    div.setAttribute('id', `container-${i}`)
+    div.setAttribute('class', 'container')
+    document.body.appendChild(div)
+  }
+}
+
 function setup() {
-  console.log('in setup')
   pos = 0
   prev = 1
 
@@ -37,8 +55,6 @@ function setup() {
   
   Tone.Transport.bpm.value = 120
   Tone.Transport.start()
-
-  beat.start(0)
 }
 
 function song(time) {

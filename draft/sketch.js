@@ -25,11 +25,11 @@ document.documentElement.addEventListener('mousedown', () => {
 })
 
 function createGrid() {
-  for (let i = 1; i < 17; i++) {
+  for (let i = 1; i < 33; i++) {
     const div = document.createElement('div')
     div.setAttribute('id', `container-${i}`)
     div.setAttribute('class', 'container')
-    document.body.appendChild(div)
+    document.querySelector('#grid').appendChild(div)
   }
 }
 
@@ -53,12 +53,13 @@ function setup() {
   
   beat = new Tone.Loop(song, '16n')
   
-  Tone.Transport.bpm.value = 120
+  Tone.Transport.bpm.value = 80
   Tone.Transport.start()
 }
 
 function song(time) {
   document.querySelector(`#container-${prev}`).style = ``
+  document.querySelector(`#container-${prev+16}`).style = ``
   
   if (pos % 4 === 0) {
     bassSynth.triggerAttackRelease('C1', '8n', time)
@@ -66,7 +67,7 @@ function song(time) {
   }
   else if (pos % 4 !== 1) {
     cymbalSynth.triggerAttackRelease('32n', time, 0.3)
-    document.querySelector(`#container-${pos+1}`).style = `background-color: red`
+    document.querySelector(`#container-${pos+17}`).style = `background-color: red`
   }
 
   prev = pos + 1

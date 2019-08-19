@@ -4,7 +4,7 @@ let beat
 let bassSynth
 let cymbalSynth
 let pos
-let prev
+let prevs
 
 createGrid()
 
@@ -47,21 +47,6 @@ function createGrid() {
       document.querySelector('#grid').appendChild(div)
     }
   }
-
-  /*for (let i = 1; i < 17; i++) {
-    const div = document.createElement('div')
-    div.setAttribute('id', `container-${i}`)
-    div.setAttribute('class', 'container')
-
-    div.addEventListener('click', () => {
-      if (div.className.includes('enabled'))
-        div.setAttribute('class', 'container')
-      else
-        div.setAttribute('class', 'container enabled')
-    })
-
-    document.querySelector('#grid').appendChild(div)
-  }*/
 }
 
 function setup() {
@@ -89,15 +74,25 @@ function setup() {
 }
 
 function song(time) {
-  prev.style = ``
-  const currentDiv = document.querySelector(`#container-${pos+1}`)
-  
-  if (currentDiv.className.includes('enabled')) {
-    bassSynth.triggerAttackRelease('C1', '8n', time)
-    currentDiv.style = `background-color: #b4f2c4`
+  if (prevs) {
+    prevs.forEach(d => d.style = ``)
   }
 
-  prev = currentDiv
+  const currentDivs = document.querySelectorAll(`div[column='${pos}']`)
+
+  currentDivs.forEach(d => {
+    if (d.className.includes('enabled')) {
+      if (d.getAttribute('row') === '0')
+        bassSynth.triggerAttackRelease('C1', '8n', time)
+      else
+        cymbalSynth.triggerAttackRelease('32n', time, 0.3)
+
+      d.style = `background-color: #ff00ff`
+    }
+  })
+
+  prevs = currentDivs
+
   pos = (pos + 1) % 16
 }
 

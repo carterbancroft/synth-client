@@ -10,7 +10,9 @@ createGrid()
 
 let isPlaying = false
 
-document.documentElement.addEventListener('mousedown', () => {
+document.documentElement.addEventListener('keyup', e => {
+  if (e.keyCode !== 32) return
+
   if (Tone.context.state !== 'running') {
     Tone.context.resume()
     setup()
@@ -31,7 +33,10 @@ function createGrid() {
     div.setAttribute('class', 'container')
 
     div.addEventListener('click', () => {
-      div.setAttribute('class', 'container enabled')
+      if (div.className.includes('enabled'))
+        div.setAttribute('class', 'container')
+      else
+        div.setAttribute('class', 'container enabled')
     })
 
     document.querySelector('#grid').appendChild(div)

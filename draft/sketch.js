@@ -87,7 +87,10 @@ function song(time) {
       else
         cymbalSynth.triggerAttackRelease('32n', time, 0.3)
 
-      d.style = `background-color: #ff00ff`
+      d.style = 'background-color: #ff00ff; border-color: black;'
+    }
+    else {
+      d.style = 'border-color: black;'
     }
   })
 

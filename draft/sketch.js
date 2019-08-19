@@ -26,6 +26,14 @@ document.documentElement.addEventListener('keyup', e => {
   isPlaying = !isPlaying
 })
 
+document.querySelector('input').addEventListener('keyup', e => {
+  if (e.keyCode !== 13) return
+
+  const bpm = document.querySelector('input').value
+
+  Tone.Transport.bpm.value = parseInt(bpm)
+})
+
 function createGrid() {
   const rows = 2
   const columns = 16
@@ -68,8 +76,10 @@ function setup() {
   }).toMaster()
   
   beat = new Tone.Loop(song, '16n')
+
+  const bpm = document.querySelector('input').value
   
-  Tone.Transport.bpm.value = 80
+  Tone.Transport.bpm.value = parseInt(bpm)
   Tone.Transport.start()
 }
 

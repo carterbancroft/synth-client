@@ -1,20 +1,19 @@
 import React from 'react'
 
-import Cell from './Cell'
-
-import './App.css'
+import Instrument from './Instrument'
 
 
 class App extends React.Component {
   render() {
-    const cells = []
-    for (let i = 0; i < 17; i++) {
-      cells.push(<Cell id={ `cell-${i}` } />)
+    const instruments = []
+
+    for (let i = 0; i < 3; i++) {
+      instruments.push(<Instrument />)
     }
 
     return (
       <div>
-        { cells }
+        { instruments }
       </div>
     )
   }

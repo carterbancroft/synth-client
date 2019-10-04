@@ -22,6 +22,7 @@
     "tone": "^13.8.25"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "eslint": "^6.1.0",
     "eslint-plugin-react": "^7.14.3",
     "react-scripts": "^3.1.0"

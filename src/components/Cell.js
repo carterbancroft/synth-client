@@ -13,7 +13,7 @@ class Cell extends React.Component {
     const { enabled } = this.state
 
     return (
-      <div onClick={ this.toggleCell } className={ `cell ${enabled ? "enabled" : ""}` } />
+      <div onClick={ this.toggleCell } className={ `cell ${enabled ? "enabled" : ""} ${this.props.isPlaying ? "playing" : ""}` } />
     )
   }
 }

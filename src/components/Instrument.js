@@ -7,8 +7,13 @@ class Instrument extends React.Component {
   render() {
     const cells = []
 
-    for (let i = 0; i < 17; i++) {
-      cells.push(<Cell />)
+    for (let i = 0; i < 16; i++) {
+      if (this.props.currentBeat === i) {
+        cells.push(<Cell key={ i } isPlaying={true} />)
+      }
+      else {
+        cells.push(<Cell key={ i } />)
+      }
     }
 
     return (

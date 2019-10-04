@@ -19,8 +19,6 @@ module.exports = {
     'plugin:react/recommended'
   ],
 
-  'parser': 'babel-eslint',
-
   // Make these includes available so eslint doesn't complain about it
   'env': {
     'es6': true,

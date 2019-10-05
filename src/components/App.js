@@ -43,11 +43,7 @@ class App extends React.Component {
   render() {
     const instruments = []
 
-    /*for (let i = 0; i < 3; i++) {
-      instruments.push(<Instrument />)
-    }*/
-
-    instruments.push(<Instrument currentBeat={this.state.beat} key={0} />)
+    instruments.push(<Instrument synth={Tone.MembraneSynth} currentBeat={this.state.beat} key={0} />)
 
     return (
       <div>

@@ -8,7 +8,7 @@ class Instrument extends React.Component {
   constructor(props) {
     super(props)
 
-    this.synth = new Tone.MembraneSynth().toMaster()
+    this.synth = new this.props.synth().toMaster()
   }
 
   play = () => {

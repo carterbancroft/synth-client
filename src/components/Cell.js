@@ -15,14 +15,16 @@ class Cell extends React.Component {
     const enabledClass = enabled ? 'enabled' : ''
     const playingClass = this.props.isPlaying ? 'playing' : ''
 
-    if (enabled && this.props.isPlaying) {
+    const isHit = enabled && this.props.isPlaying
+    const hitClass = isHit ? 'hit' : ''
+    if (isHit) {
       this.props.play()
     }
 
     return (
       <div
         onClick={ this.toggleCell }
-        className={ `cell ${ enabledClass } ${ playingClass }` }
+        className={ `cell ${ enabledClass } ${ playingClass } ${ hitClass }` }
       />
     )
   }

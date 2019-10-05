@@ -13,6 +13,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
+    this.isLooping = false
+
     this.loop = new Tone.Loop(time => {
       const c = this.state.beat
       const b = (c + 1) % 16
@@ -23,11 +25,18 @@ class App extends React.Component {
     const bpm = 80
 
     Tone.Transport.bpm.value = parseInt(bpm)
+    Tone.Transport.start()
   }
 
   toggleLoop = () => {
-    Tone.Transport.start()
-    this.loop.start(0)
+    if (this.isLooping) {
+      this.loop.stop()
+    }
+    else {
+      this.loop.start(0)
+    }
+
+    this.isLooping = !this.isLooping
   }
 
   // Add instruments here... State should have a list of instruments.

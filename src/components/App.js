@@ -11,8 +11,34 @@ class App extends React.Component {
     instruments: [
       {
         synth: Tone.MembraneSynth,
-        key: Date.now()
-      }
+        attackRelease: {
+          note: 'C1',
+          duration: '8n',
+          time: null
+        },
+        key: 0,
+      },
+      {
+        synth: Tone.MetalSynth,
+        synthOptions: {
+          frequency: 250,
+          envelope: {
+            attack: 0.001,
+            decay: 0.1,
+            release: 0.01,
+          },
+          harmonicity: 3.1,
+          modulationIndex: 16,
+          resonance: 4000,
+          octaves: 1.5,
+        },
+        attackRelease: {
+          duration: '32n',
+          time: null,
+          velocity: 0.3,
+        },
+        key: 1,
+      },
     ]
   }
 
@@ -28,7 +54,7 @@ class App extends React.Component {
       this.setState({ beat: b, time })
     }, '16n')
 
-    const bpm = 80
+    const bpm = 120
 
     Tone.Transport.bpm.value = parseInt(bpm)
     Tone.Transport.start()
@@ -51,8 +77,10 @@ class App extends React.Component {
         {
           this.state.instruments.map(instrument => {
             return <Instrument
-              synth={instrument.synth}
-              currentBeat={this.state.beat}
+              synth={ instrument.synth }
+              synthOptions={ instrument.synthOptions || null }
+              attackRelease={ instrument.attackRelease }
+              currentBeat={ this.state.beat }
               key={instrument.key}
             />
           })

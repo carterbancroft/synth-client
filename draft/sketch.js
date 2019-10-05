@@ -67,7 +67,7 @@ function setup() {
     envelope: {
       attack: 0.001,
       decay: 0.1,
-      releae: 0.01,
+      release: 0.01,
     },
     harmonicity: 3.1,
     modulationIndex: 16,

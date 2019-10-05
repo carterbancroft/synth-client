@@ -1,5 +1,4 @@
 import React from 'react'
-import Tone from 'tone'
 
 import Cell from './Cell'
 
@@ -8,11 +7,31 @@ class Instrument extends React.Component {
   constructor(props) {
     super(props)
 
-    this.synth = new this.props.synth().toMaster()
+    if (this.props.synthOptions) {
+      this.synth = new this.props.synth(this.props.synthOptions).toMaster()
+    }
+    else {
+      this.synth = new this.props.synth().toMaster()
+    }
   }
 
   play = () => {
-    this.synth.triggerAttackRelease('C1', '8n', this.props.currentTime)
+    const attackRelease = this.props.attackRelease
+
+    if (attackRelease.note) {
+      this.synth.triggerAttackRelease(
+        attackRelease.note,
+        attackRelease.duration,
+        attackRelease.time
+      )
+    }
+    else {
+      this.synth.triggerAttackRelease(
+        attackRelease.duration,
+        attackRelease.time,
+        attackRelease.velocity
+      )
+    }
   }
 
   render() {

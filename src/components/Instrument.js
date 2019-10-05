@@ -22,13 +22,13 @@ class Instrument extends React.Component {
       this.synth.triggerAttackRelease(
         attackRelease.note,
         attackRelease.duration,
-        attackRelease.time
+        undefined,
       )
     }
     else {
       this.synth.triggerAttackRelease(
         attackRelease.duration,
-        attackRelease.time,
+        undefined,
         attackRelease.velocity
       )
     }

@@ -14,7 +14,6 @@ class App extends React.Component {
         attackRelease: {
           note: 'C1',
           duration: '8n',
-          time: null
         },
         key: 0,
       },
@@ -34,7 +33,6 @@ class App extends React.Component {
         },
         attackRelease: {
           duration: '32n',
-          time: null,
           velocity: 0.3,
         },
         key: 1,

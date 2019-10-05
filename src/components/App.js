@@ -8,6 +8,12 @@ class App extends React.Component {
   state = {
     beat: 0,
     time: null,
+    instruments: [
+      {
+        synth: Tone.MembraneSynth,
+        key: Date.now()
+      }
+    ]
   }
 
   constructor(props) {
@@ -39,15 +45,18 @@ class App extends React.Component {
     this.isLooping = !this.isLooping
   }
 
-  // Add instruments here... State should have a list of instruments.
   render() {
-    const instruments = []
-
-    instruments.push(<Instrument synth={Tone.MembraneSynth} currentBeat={this.state.beat} key={0} />)
-
     return (
       <div>
-        { instruments }
+        {
+          this.state.instruments.map(instrument => {
+            return <Instrument
+              synth={instrument.synth}
+              currentBeat={this.state.beat}
+              key={instrument.key}
+            />
+          })
+        }
         <button onClick={this.toggleLoop}>Loop</button>
       </div>
     )

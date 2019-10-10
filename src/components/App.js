@@ -2,6 +2,7 @@ import React from 'react'
 import Tone from 'tone'
 
 import Instrument from './Instrument'
+import InstrumentPicker from './InstrumentPicker'
 
 
 class App extends React.Component {
@@ -16,26 +17,6 @@ class App extends React.Component {
           duration: '8n',
         },
         key: 0,
-      },
-      {
-        synth: Tone.MetalSynth,
-        synthOptions: {
-          frequency: 250,
-          envelope: {
-            attack: 0.001,
-            decay: 0.1,
-            release: 0.01,
-          },
-          harmonicity: 3.1,
-          modulationIndex: 16,
-          resonance: 4000,
-          octaves: 1.5,
-        },
-        attackRelease: {
-          duration: '32n',
-          velocity: 0.3,
-        },
-        key: 1,
       },
     ]
   }
@@ -69,6 +50,12 @@ class App extends React.Component {
     this.isLooping = !this.isLooping
   }
 
+  addInstrument = (instrument) => {
+    const { instruments } = this.state
+    instruments.push(instrument)
+    this.setState({ instruments })
+  }
+
   render() {
     return (
       <div>
@@ -84,6 +71,7 @@ class App extends React.Component {
           })
         }
         <button onClick={this.toggleLoop}>Loop</button>
+        <InstrumentPicker addInstrument={this.addInstrument} />
       </div>
     )
   }

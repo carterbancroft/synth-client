@@ -50,6 +50,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <button id="togglePlay" className="togglePlayButton" onClick={this.toggleLoop}>&#9658;</button>
+        <InstrumentPicker key="instrumentPicker" addInstrument={this.addInstrument} />
         {
           this.state.instruments.map(instrument => {
             return <Instrument
@@ -61,8 +63,6 @@ class App extends React.Component {
             />
           })
         }
-        <button onClick={this.toggleLoop}>Loop</button>
-        <InstrumentPicker addInstrument={this.addInstrument} />
       </div>
     )
   }

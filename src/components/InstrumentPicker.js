@@ -19,7 +19,7 @@ class InstrumentPicker extends React.Component {
       },
       {
         id: 1,
-        name: 'Cymbal',
+        name: 'High Hat',
         config: {
           synth: Tone.MetalSynth,
           synthOptions: {

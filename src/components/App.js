@@ -9,16 +9,7 @@ class App extends React.Component {
   state = {
     beat: 0,
     time: null,
-    instruments: [
-      {
-        synth: Tone.MembraneSynth,
-        attackRelease: {
-          note: 'C1',
-          duration: '8n',
-        },
-        key: 0,
-      },
-    ]
+    instruments: []
   }
 
   constructor(props) {

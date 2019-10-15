@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Sans-Serif;
+  background-color: rgb(30, 30, 46);
 }
 
 #main {
@@ -15,20 +16,22 @@ body {
   float: left;
   width: 50px;
   height: 50px;
-  border: 2px solid #ccc;
-  margin: 2px;
+  margin: 3px;
+  border: 1px solid #555;
+  border-radius: 12px;
 }
 
 .enabled {
-  background-color: #ff8aff;
+  background-color: rgb(224, 78, 202);
+  border: 1px solid rgb(224, 78, 202);
 }
 
 .playing {
-  border: 2px solid black;
+  border: 1px solid rgb(0, 214, 180);
 }
 
 .hit {
-  background-color: #ff00ff
+  background-color: rgb(0, 214, 180);
 }
 
 .instrument {
@@ -36,26 +39,22 @@ body {
 }
 
 .togglePlayButton {
-  box-shadow:inset 0px 1px 0px 0px #9acc85;
-  background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
-  background-color:#74ad5a;
-  border:1px solid #3b6e22;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-family:Arial;
-  font-size:13px;
-  font-weight:bold;
-  padding:6px 12px;
-  text-decoration:none;
+  font-size: 1em;
+  color: rgb(30, 30, 46);
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 90px;
+  height: 46px;
+  display: block;
+  background-color: rgb(224, 78, 202);
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
 }
+
+.togglePlayButton:focus { outline:0; }
 
 .togglePlayButton:hover {
-  background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
-  background-color:#68a54b;
+  background-color: rgb(0, 214, 180);
 }
 
-.togglePlayButton:active {
-  position:relative;
-  top:1px;
-}

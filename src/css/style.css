@@ -45,10 +45,12 @@ body {
 .removeInstrumentButton {
   border: none;
   background-color: rgb(30, 30, 46);
+  float: left;
+  margin: 3px;
 }
 .removeInstrumentButton i {
   color: rgb(234, 88, 139);
-  font-size: 3.5em;
+  font-size: 3em;
 }
 
 .togglePlayButton {

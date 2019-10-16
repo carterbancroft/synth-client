@@ -12,19 +12,21 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: { loader: 'babel-loader' },
       },
       {
         test: /\.css$/,
         use: [
-          {
-            loader: 'style-loader', // creates style nodes from JS strings
-          },
-          {
-            loader: 'css-loader', // translates CSS into CommonJS
-          },
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+        ],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' },
         ],
       },
     ]

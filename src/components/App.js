@@ -1,6 +1,7 @@
 import React from 'react'
 import Tone from 'tone'
 
+import Dash from './Dash'
 import Instrument from './Instrument'
 //import InstrumentPicker from './InstrumentPicker'
 
@@ -87,9 +88,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button id="togglePlay" className="togglePlayButton" onClick={this.toggleLoop}>
-          <i className="iconoo-play" />
-        </button>
+        <Dash key="dashboard" toggleLoop={this.toggleLoop} />
         { /*<InstrumentPicker key="instrumentPicker" addInstrument={this.addInstrument} />*/ }
         {
           this.state.instruments.map(instrument => {

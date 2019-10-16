@@ -55,6 +55,13 @@ class InstrumentPicker extends React.Component {
       this.props.removeInstrument(instrument.name)
   }
 
+  componentDidMount() {
+    const { instruments } = this.state
+
+    // Add all the instruments on startup
+    instruments.forEach(i => this.props.addInstrument(i))
+  }
+
   render() {
     const { instruments } = this.state
 
@@ -62,6 +69,7 @@ class InstrumentPicker extends React.Component {
       return (
         <li key={ instrument.id }>
           <input
+            defaultChecked
             type="checkbox"
             key={ instrument.id }
             value={ instrument.name }

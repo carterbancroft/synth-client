@@ -42,48 +42,40 @@ class InstrumentPicker extends React.Component {
         },
       }
     ],
-    alreadyAdded: [],
-    selectedInstrument: 'Bass',
   }
 
-  handleClick = () => {
-    const { instruments, alreadyAdded } = this.state
-    const instrument = instruments.find(i => i.name === this.state.selectedInstrument)
-    const config = instrument.config
+  toggleInstrument = e => {
+    const name = e.target.value
+    const isChecked = e.target.checked
+    const { instruments } = this.state
+    const instrument = instruments.find(i => i.name === name)
 
-    alreadyAdded.push(instrument.name)
-
-    for (let i of instruments) {
-      if (alreadyAdded.includes(i.name)) continue
-
-      this.setState({ alreadyAdded, selectedInstrument: i.name })
-      break
-    }
-
-
-    this.props.addInstrument(config)
+    isChecked ?
+      this.props.addInstrument(instrument) :
+      this.props.removeInstrument(instrument.name)
   }
 
   render() {
-    const { instruments, alreadyAdded } = this.state
-    const options = instruments.map(instrument => {
-      if (alreadyAdded.includes(instrument.name)) return
+    const { instruments } = this.state
 
-      return <option
-        key={ instrument.id }
-        value={ instrument.name }>{ instrument.name }</option>
+    const checkboxes = instruments.map(instrument => {
+      return (
+        <li key={ instrument.id }>
+          <input
+            type="checkbox"
+            key={ instrument.id }
+            value={ instrument.name }
+            onClick= { this.toggleInstrument } />
+          <label>{ instrument.name }</label>
+        </li>
+      )
     })
 
     return (
       <div>
-        <select
-          value={ this.state.selectedInstrument }
-          onChange={
-            (e) => this.setState({ selectedInstrument: e.target.value })
-          }>
-          { options }
-        </select>
-        <button onClick={ this.handleClick }>Add</button>
+        <ul className="instrumentSelector">
+          { checkboxes }
+        </ul>
       </div>
     )
   }

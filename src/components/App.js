@@ -3,51 +3,13 @@ import Tone from 'tone'
 
 import Dash from './Dash'
 import Instrument from './Instrument'
-//import InstrumentPicker from './InstrumentPicker'
 
 
 class App extends React.Component {
   state = {
     beat: 0,
     time: null,
-    instruments: [
-      {
-        id: 0,
-        name: 'Bass',
-        config: {
-          synth: Tone.MembraneSynth,
-          attackRelease: {
-            note: 'C1',
-            duration: '8n',
-          },
-          key: 0,
-        },
-      },
-      {
-        id: 1,
-        name: 'High Hat',
-        config: {
-          synth: Tone.MetalSynth,
-          synthOptions: {
-            frequency: 250,
-            envelope: {
-              attack: 0.001,
-              decay: 0.1,
-              release: 0.01,
-            },
-            harmonicity: 3.1,
-            modulationIndex: 16,
-            resonance: 4000,
-            octaves: 1.5,
-          },
-          attackRelease: {
-            duration: '32n',
-            velocity: 0.3,
-          },
-          key: 1,
-        },
-      }
-    ]
+    instruments: [],
   }
 
   constructor(props) {
@@ -79,17 +41,26 @@ class App extends React.Component {
     this.isLooping = !this.isLooping
   }
 
-  addInstrument = (instrument) => {
+  addInstrument = instrument => {
     const { instruments } = this.state
     instruments.push(instrument)
     this.setState({ instruments })
   }
 
+  removeInstrument = instrumentName => {
+    const { instruments } = this.state
+    const filtered = instruments.filter(i => i.name !== instrumentName)
+    this.setState({ instruments: filtered })
+  }
+
   render() {
     return (
       <div>
-        <Dash key="dashboard" toggleLoop={this.toggleLoop} />
-        { /*<InstrumentPicker key="instrumentPicker" addInstrument={this.addInstrument} />*/ }
+        <Dash key="dashboard"
+          toggleLoop={ this.toggleLoop }
+          addInstrument={ this.addInstrument }
+          removeInstrument={ this.removeInstrument }
+        />
         {
           this.state.instruments.map(instrument => {
             return <Instrument
@@ -97,7 +68,7 @@ class App extends React.Component {
               synthOptions={ instrument.config.synthOptions || null }
               attackRelease={ instrument.config.attackRelease }
               currentBeat={ this.state.beat }
-              key={instrument.key}
+              key={ instrument.config.key }
             />
           })
         }

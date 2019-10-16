@@ -1,9 +1,15 @@
+@dark-blue: rgb(30, 30, 46);
+@hot-pink: rgb(224, 78, 202);
+@teal-green: rgb(0, 214, 180);
+@grey: #555;
+@font-color: #aaa;
+
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: Sans-Serif;
-  background-color: rgb(30, 30, 46);
+  background-color: @dark-blue;
 }
 
 #main {
@@ -17,22 +23,22 @@ body {
   width: 50px;
   height: 50px;
   margin: 3px;
-  border: 1px solid #555;
+  border: 1px solid @grey;
   border-radius: 12px;
   cursor: pointer;
 }
 
 .enabled {
-  background-color: rgb(224, 78, 202);
-  border: 1px solid rgb(224, 78, 202);
+  background-color: @hot-pink;
+  border: 1px solid @hot-pink;
 }
 
 .playing {
-  border: 1px solid rgb(0, 214, 180);
+  border: 1px solid @teal-green;
 }
 
 .hit {
-  background-color: rgb(0, 214, 180);
+  background-color: @teal-green;
 }
 
 .instrument {
@@ -41,28 +47,27 @@ body {
 }
 
 .togglePlayButton {
-  color: rgb(30, 30, 46);
+  color: @dark-blue;
+  background-color: @hot-pink;
   width: 120px;
   height: 100%;
   display: block;
   float: right;
-  background-color: rgb(224, 78, 202);
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  font-size: 3em;
-  color: rgb(30, 30, 46);
+  font-size: 2em;
 }
 
 .togglePlayButton:focus { outline:0; }
 
 .togglePlayButton:hover {
-  background-color: rgb(0, 214, 180);
+  background-color: @teal-green;
 }
 
 .dashboard {
   height: 100px;
-  border: 1px solid #555;
+  border: 1px solid @grey;
   border-radius: 12px;
   padding: 5px;
   margin: 15px;
@@ -77,9 +82,9 @@ body {
   float: left;
   display: block;
   font-size: .9em;
-  background-color: rgb(30, 30, 46);
-  color: #aaa;
-  border: 1px solid #555;
+  background-color: @dark-blue;
+  color: @font-color;
+  border: 1px solid @grey;
   list-style: none;
 }
 

@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --open 'Google Chrome' --hot",
     "build": "webpack --mode production"
   },
   "dependencies": {

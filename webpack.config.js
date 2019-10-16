@@ -4,8 +4,8 @@ const htmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'index_bundle.js',
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -15,6 +15,17 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+        ],
       },
     ]
   },

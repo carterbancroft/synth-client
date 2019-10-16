@@ -12,7 +12,7 @@ class Dash extends React.Component {
           removeInstrument={ this.props.removeInstrument }
         />
         <button id="togglePlay" className="togglePlayButton" onClick={this.props.toggleLoop}>
-          <i className="iconoo-play" />
+          &#9656;
         </button>
       </div>
     )

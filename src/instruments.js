@@ -36,6 +36,27 @@ const instruments = [
       },
       key: 1,
     },
+  },
+  {
+    id: 2,
+    name: 'Snare',
+    config: {
+      synth: Tone.NoiseSynth,
+      synthOptions: {
+        noise: {
+          type: "brown"
+        },
+        envelope : {
+          attack : 0.005,
+          decay : 0.1,
+          sustain : 0.05
+        }
+      },
+      attackRelease: {
+        duration: '8n',
+      },
+      key: 2,
+    }
   }
 ]
 

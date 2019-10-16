@@ -7,7 +7,7 @@ body {
 }
 
 #main {
-  width: 1000px;
+  width: 950px;
   margin: 0 auto;
   margin-top: 100px;
 }
@@ -40,17 +40,6 @@ body {
 
 .instrument {
   clear: left;
-}
-
-.removeInstrumentButton {
-  border: none;
-  background-color: rgb(30, 30, 46);
-  float: left;
-  margin: 3px;
-}
-.removeInstrumentButton i {
-  color: rgb(234, 88, 139);
-  font-size: 3em;
 }
 
 .togglePlayButton {

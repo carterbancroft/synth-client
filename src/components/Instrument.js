@@ -44,9 +44,6 @@ class Instrument extends React.Component {
     return (
       <div className="instrument">
         { cells }
-        <button id="removeInstrument" className="removeInstrumentButton">
-          <i className="iconoo-cross" />
-        </button>
       </div>
     )
   }

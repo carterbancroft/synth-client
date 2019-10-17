@@ -3,10 +3,16 @@ import React from 'react'
 import Cell from './Cell'
 
 
+// This defines a grouping of pad components to make up a single drum loop of
+// 16 beats. i.e. it's made up of 16 pads.
 class Instrument extends React.Component {
-  constructor(props) {
-    super(props)
-
+  componentDidMount() {
+    // We have some special casing for Tone.js synths. Individual instruments
+    // may have extra options defining them, or they may not. If they do
+    // then we need to pass those in. I could be clever and pass null and not
+    // have this conditional but Tone.js treats null as something specific.
+    // It's better to have the explicit conditional even if it's extra code in
+    // this case.
     if (this.props.synthOptions) {
       this.synth = new this.props.synth(this.props.synthOptions).toMaster()
     }
@@ -15,9 +21,11 @@ class Instrument extends React.Component {
     }
   }
 
+  // Handles playing a given pad within the instrument.
   play = () => {
     const attackRelease = this.props.attackRelease
 
+    // More special casing depending on what instrument we are working with.
     if (attackRelease.note) {
       this.synth.triggerAttackRelease(
         attackRelease.note,
@@ -37,8 +45,17 @@ class Instrument extends React.Component {
   render() {
     const cells = []
 
+    // Render 16 pads for any particular instrument.
     for (let i = 0; i < 16; i++) {
-      cells.push(<Cell play={this.play} key={ i } isPlaying={ this.props.currentBeat === i } />)
+      const cell = (
+        <Cell
+          play={ this.play }
+          key={ i }
+          isPlaying={ this.props.currentBeat === i }
+        />
+      )
+
+      cells.push(cell)
     }
 
     return (

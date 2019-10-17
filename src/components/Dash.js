@@ -1,5 +1,6 @@
 import React from 'react'
 
+import BpmSelector from './BpmSelector'
 import InstrumentPicker from './InstrumentPicker'
 
 class Dash extends React.Component {
@@ -14,6 +15,7 @@ class Dash extends React.Component {
         <button id="togglePlay" className="togglePlayButton" onClick={this.props.toggleLoop}>
           &#9656;
         </button>
+        <BpmSelector />
       </div>
     )
   }

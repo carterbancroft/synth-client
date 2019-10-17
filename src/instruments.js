@@ -5,18 +5,19 @@ const instruments = [
     id: 0,
     name: 'Bass',
     config: {
+      key: 0,
       synth: Tone.MembraneSynth,
       attackRelease: {
         note: 'C1',
         duration: '8n',
       },
-      key: 0,
     },
   },
   {
     id: 1,
     name: 'High Hat',
     config: {
+      key: 1,
       synth: Tone.MetalSynth,
       synthOptions: {
         frequency: 250,
@@ -34,13 +35,13 @@ const instruments = [
         duration: '32n',
         velocity: 0.3,
       },
-      key: 1,
     },
   },
   {
     id: 2,
     name: 'Snare',
     config: {
+      key: 2,
       synth: Tone.NoiseSynth,
       synthOptions: {
         noise: {
@@ -55,7 +56,6 @@ const instruments = [
       attackRelease: {
         duration: '8n',
       },
-      key: 2,
     }
   }
 ]

@@ -24,9 +24,6 @@ class App extends React.Component {
       this.setState({ beat: b, time })
     }, '16n')
 
-    const bpm = 120
-
-    Tone.Transport.bpm.value = parseInt(bpm)
     Tone.Transport.start()
   }
 

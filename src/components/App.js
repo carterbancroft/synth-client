@@ -57,6 +57,7 @@ class App extends React.Component {
           toggleLoop={ this.toggleLoop }
           addInstrument={ this.addInstrument }
           removeInstrument={ this.removeInstrument }
+          currentBeat={ this.state.beat }
         />
         {
           this.state.instruments.map(instrument => {

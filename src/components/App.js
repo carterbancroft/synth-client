@@ -7,27 +7,41 @@ import Instrument from './Instrument'
 
 class App extends React.Component {
   state = {
+    // Tracks which beat we are on in the 16 beat measure
     beat: 0,
-    time: null,
+    // Stores all the instruments currently added to the overall loop
     instruments: [],
   }
 
-  constructor(props) {
-    super(props)
-
+  componentDidMount() {
+    // Used to tell if the loop is running. Toggled by hitting play/pause.
     this.isLooping = false
 
+    // Configure our Tone.js loop to hae 16 notes (this essentially means every
+    // beat is a 16th note).
     this.loop = new Tone.Loop(time => {
-      const c = this.state.beat
-      const b = (c + 1) % 16
+      // Do a little math to calculate which beat within the loop timer we are
+      // on.
+      const previousBeat = this.state.beat
 
-      this.setState({ beat: b, time })
-    }, '16n')
+      // As the loop runs the beat as defined in the Transport will just keep
+      // counting higher. We can mod it by 16 to get where we are at within
+      // a 16 beat measure.
+      const currentBeat = (previousBeat + 1) % 16
 
-    Tone.Transport.start()
+      this.setState({ beat: currentBeat })
+    }, '16n') // The 16n says our loop should be using 16th notes.
   }
 
+  // Used to start and stop the loop from playing.
   toggleLoop = () => {
+    if (Tone.Transport.state === 'stopped') {
+      // The transport is tone's internal time keeper. It handles keeping things
+      // within a loop in sync without having to worry about js timers. If it
+      // hasn't been started yet, start it.
+      Tone.Transport.start()
+    }
+
     if (this.isLooping) {
       this.loop.stop()
     }
@@ -38,12 +52,15 @@ class App extends React.Component {
     this.isLooping = !this.isLooping
   }
 
+  // Used to add a new instrument to the loop. Instruments are defined in
+  // src/components/instruments.js
   addInstrument = instrument => {
     const { instruments } = this.state
     instruments.push(instrument)
     this.setState({ instruments })
   }
 
+  // Used to remove an instrument from the loop.
   removeInstrument = instrumentName => {
     const { instruments } = this.state
     const filtered = instruments.filter(i => i.name !== instrumentName)

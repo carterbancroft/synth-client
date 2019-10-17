@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 
 import App from './components/App'
 
-import './style/normalize.css'
+import 'normalize.css'
+import 'icono'
 import './style/style.less'
 
 

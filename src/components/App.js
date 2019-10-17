@@ -68,6 +68,18 @@ class App extends React.Component {
   }
 
   render() {
+    const instrumentComponents = this.state.instruments.map(instrument => {
+      return (
+        <Instrument
+          synth={ instrument.config.synth }
+          synthOptions={ instrument.config.synthOptions || null }
+          attackRelease={ instrument.config.attackRelease }
+          currentBeat={ this.state.beat }
+          key={ instrument.config.key }
+        />
+      )
+    })
+
     return (
       <div>
         <Dash key="dashboard"
@@ -75,18 +87,9 @@ class App extends React.Component {
           addInstrument={ this.addInstrument }
           removeInstrument={ this.removeInstrument }
           currentBeat={ this.state.beat }
+          isLooping={ this.isLooping }
         />
-        {
-          this.state.instruments.map(instrument => {
-            return <Instrument
-              synth={ instrument.config.synth }
-              synthOptions={ instrument.config.synthOptions || null }
-              attackRelease={ instrument.config.attackRelease }
-              currentBeat={ this.state.beat }
-              key={ instrument.config.key }
-            />
-          })
-        }
+        { instrumentComponents }
       </div>
     )
   }

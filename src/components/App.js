@@ -99,13 +99,10 @@ class App extends React.Component {
       const currRecording = this.state.recording.find(r => r.name === instrument.name)
       return (
         <Instrument
-          synth={ instrument.config.synth }
-          synthOptions={ instrument.config.synthOptions || null }
-          attackRelease={ instrument.config.attackRelease }
+          key={ instrument.name }
+          instrument={ instrument }
           currentBeat={ this.state.beat }
-          key={ instrument.config.key }
           recording={ currRecording.data }
-          name={ instrument.name }
           updateRecording={ this.updateRecording }
         />
       )

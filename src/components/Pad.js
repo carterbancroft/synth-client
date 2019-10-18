@@ -2,12 +2,12 @@ import React from 'react'
 
 // This defines an individual pad for a drum machine. Right now instruments
 // are just drums and are entirely made up of these pads.
-class Cell extends React.Component {
+class Pad extends React.Component {
   state = {
     enabled: false,
   }
 
-  toggleCell = () => {
+  togglePad = () => {
     this.setState(prevState => ({ enabled: !prevState.enabled }))
     this.props.updateRecording(this.props.cellId)
   }
@@ -19,7 +19,7 @@ class Cell extends React.Component {
   }
 
   render() {
-    // When a particular cell is clicked we need to make it be "enabled".
+    // When a particular pad is clicked we need to make it be "enabled".
     // Enabling it means it gets special styling (so it's visually enabled)
     // and also it means when we're on the beat that corresponds with this pad
     // the hit is played.
@@ -38,11 +38,11 @@ class Cell extends React.Component {
 
     return (
       <div
-        onClick={ this.toggleCell }
-        className={ `cell ${ enabledClass } ${ playingClass } ${ hitClass }` }
+        onClick={ this.togglePad }
+        className={ `pad ${ enabledClass } ${ playingClass } ${ hitClass }` }
       />
     )
   }
 }
 
-export default Cell
+export default Pad

@@ -4,6 +4,7 @@ import Tone from 'tone'
 import Dash from './Dash'
 import Instrument from './Instrument'
 
+import recording from '../recording'
 
 class App extends React.Component {
   state = {
@@ -11,6 +12,7 @@ class App extends React.Component {
     beat: 0,
     // Stores all the instruments currently added to the overall loop
     instruments: [],
+    recording: recording,
   }
 
   componentDidMount() {
@@ -67,8 +69,31 @@ class App extends React.Component {
     this.setState({ instruments: filtered })
   }
 
+  updateRecording = (instrumentName, padId) => {
+    this.setState(prevState => {
+      // TODO: Should I spread here??
+      const updatedRecording = prevState.recording
+      updatedRecording.forEach(r => {
+        if (r.name !== instrumentName) return
+
+        console.log('found the instrument')
+        console.log(padId)
+        console.log(r.data[padId])
+
+        r.data[padId] = !r.data[padId]
+      })
+
+      return { recording: updatedRecording }
+    })
+  }
+
+  getRecording = () => {
+    console.log(this.state.recording)
+  }
+
   render() {
     const instrumentComponents = this.state.instruments.map(instrument => {
+      const currRecording = this.state.recording.find(r => r.name === instrument.name)
       return (
         <Instrument
           synth={ instrument.config.synth }
@@ -76,6 +101,9 @@ class App extends React.Component {
           attackRelease={ instrument.config.attackRelease }
           currentBeat={ this.state.beat }
           key={ instrument.config.key }
+          recording={ currRecording.data }
+          name={ instrument.name }
+          updateRecording={ this.updateRecording }
         />
       )
     })
@@ -90,6 +118,7 @@ class App extends React.Component {
           isLooping={ this.isLooping }
         />
         { instrumentComponents }
+        <button key="saveButton" onClick={ this.getRecording }>Get Data</button>
       </div>
     )
   }

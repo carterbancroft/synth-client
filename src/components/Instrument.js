@@ -42,6 +42,10 @@ class Instrument extends React.Component {
     }
   }
 
+  updateRecording = padId => {
+    this.props.updateRecording(this.props.name, padId)
+  }
+
   render() {
     const cells = []
 
@@ -51,7 +55,10 @@ class Instrument extends React.Component {
         <Cell
           play={ this.play }
           key={ i }
+          cellId={ i }
           isPlaying={ this.props.currentBeat === i }
+          recordingState={ this.props.recording[i] }
+          updateRecording={ this.updateRecording }
         />
       )
 

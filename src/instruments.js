@@ -56,7 +56,7 @@ const instruments = [
       attackRelease: {
         duration: '8n',
       },
-    }
+    },
   }
 ]
 

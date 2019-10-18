@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Cell from './Cell'
+import Pad from './Pad'
 
 
 // This defines a grouping of pad components to make up a single drum loop of
@@ -43,24 +43,24 @@ class Instrument extends React.Component {
   }
 
   render() {
-    const cells = []
+    const pads = []
 
     // Render 16 pads for any particular instrument.
     for (let i = 0; i < 16; i++) {
-      const cell = (
-        <Cell
+      const pad = (
+        <Pad
           play={ this.play }
           key={ i }
           isPlaying={ this.props.currentBeat === i }
         />
       )
 
-      cells.push(cell)
+      pads.push(pad)
     }
 
     return (
       <div className="instrument">
-        { cells }
+        { pads }
       </div>
     )
   }

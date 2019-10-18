@@ -4,7 +4,6 @@ import Tone from 'tone'
 import Dash from './Dash'
 import Instrument from './Instrument'
 
-//import recording from '../recording'
 
 class App extends React.Component {
   state = {

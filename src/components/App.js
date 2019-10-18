@@ -11,6 +11,7 @@ class App extends React.Component {
     beat: 0,
     // Stores all the instruments currently added to the overall loop
     instruments: [],
+    recording: [],
   }
 
   componentDidMount() {
@@ -55,9 +56,17 @@ class App extends React.Component {
   // Used to add a new instrument to the loop. Instruments are defined in
   // src/components/instruments.js
   addInstrument = instrument => {
-    const { instruments } = this.state
+    const { instruments, recording } = this.state
     instruments.push(instrument)
-    this.setState({ instruments })
+
+    const recordedInstrument = {
+      name: instrument.name,
+      data: new Array(16).fill(false)
+    }
+    recording.push(recordedInstrument)
+
+
+    this.setState({ instruments, recording })
   }
 
   // Used to remove an instrument from the loop.
@@ -67,15 +76,30 @@ class App extends React.Component {
     this.setState({ instruments: filtered })
   }
 
+  updateRecording = (instrumentName, padId) => {
+    this.setState(prevState => {
+      // TODO: Should I spread here??
+      const updatedRecording = prevState.recording
+      updatedRecording.forEach(r => {
+        if (r.name !== instrumentName) return
+
+        r.data[padId] = !r.data[padId]
+      })
+
+      return { recording: updatedRecording }
+    })
+  }
+
   render() {
     const instrumentComponents = this.state.instruments.map(instrument => {
+      const currRecording = this.state.recording.find(r => r.name === instrument.name)
       return (
         <Instrument
-          synth={ instrument.config.synth }
-          synthOptions={ instrument.config.synthOptions || null }
-          attackRelease={ instrument.config.attackRelease }
+          key={ instrument.name }
+          instrument={ instrument }
           currentBeat={ this.state.beat }
-          key={ instrument.config.key }
+          recording={ currRecording.data }
+          updateRecording={ this.updateRecording }
         />
       )
     })

@@ -9,6 +9,13 @@ class Pad extends React.Component {
 
   togglePad = () => {
     this.setState(prevState => ({ enabled: !prevState.enabled }))
+    this.props.updateRecording(this.props.cellId)
+  }
+
+  componentDidMount() {
+    if (!this.props.recordingState) return
+
+    this.setState({ enabled: true })
   }
 
   render() {

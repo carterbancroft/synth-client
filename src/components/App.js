@@ -90,10 +90,6 @@ class App extends React.Component {
     })
   }
 
-  getRecording = () => {
-    console.log(this.state.recording)
-  }
-
   render() {
     const instrumentComponents = this.state.instruments.map(instrument => {
       const currRecording = this.state.recording.find(r => r.name === instrument.name)
@@ -118,7 +114,6 @@ class App extends React.Component {
           isLooping={ this.isLooping }
         />
         { instrumentComponents }
-        <button key="saveButton" onClick={ this.getRecording }>Get Data</button>
       </div>
     )
   }

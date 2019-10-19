@@ -74,6 +74,29 @@ class App extends React.Component {
     })
   }
 
+  /*saveRecording = () => {
+    const url = 'http://localhost:4000/graphql'
+    console.log(JSON.stringify(this.state.recording))
+    const body = {
+      query: `mutation {
+        createComposition(compositionInput: {data:${JSON.stringify(this.state.recording)}}) {
+          shortid
+        }
+      }`
+    })
+    console.log('about to print body')
+    console.log(body)
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body
+    }
+
+    fetch(url, options)
+      .then(res => res.json())
+      .then(res => console.log(res.data));
+  }*/
+
   componentDidMount() {
     // Configure our Tone.js loop to hae 16 notes (this essentially means every
     // beat is a 16th note).
@@ -117,6 +140,10 @@ class App extends React.Component {
           isLooping={ this.state.isLooping }
         />
         { instrumentComponents }
+        <button
+          key="saveRecording"
+          onClick={ this.saveRecording }
+          className="saveRecordingButton">Save</button>
       </div>
     )
   }

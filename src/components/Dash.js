@@ -7,18 +7,8 @@ import InstrumentPicker from './InstrumentPicker'
 // instruments themselves. Like the play button, instrument picker and BPM
 // widget.
 class Dash extends React.Component {
-  state = {
-    isLooping: this.props.isLooping
-  }
-
-  toggleLoop = () => {
-    this.setState({ isLooping: !this.state.isLooping })
-
-    this.props.toggleLoop()
-  }
-
   render() {
-    const isLooping = this.state.isLooping
+    const isLooping = this.props.isLooping
 
     const icon = isLooping ?
       <i className='icono-pause' />
@@ -36,7 +26,7 @@ class Dash extends React.Component {
         <button
           id="togglePlay"
           className={ `togglePlayButton ${isLoopingClass}` }
-          onClick={this.toggleLoop}>{ icon }</button>
+          onClick={ this.props.toggleLoop }>{ icon }</button>
         <BpmWidget currentBeat={ this.props.currentBeat } />
       </div>
     )

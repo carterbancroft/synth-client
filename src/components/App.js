@@ -11,27 +11,10 @@ class App extends React.Component {
     beat: 0,
     // Stores all the instruments currently added to the overall loop
     instruments: [],
+    // The recording contains the current state of the enter loop. It can be
+    // persisted to a DB for sharing.
     recording: [],
-  }
-
-  componentDidMount() {
-    // Used to tell if the loop is running. Toggled by hitting play/pause.
-    this.isLooping = false
-
-    // Configure our Tone.js loop to hae 16 notes (this essentially means every
-    // beat is a 16th note).
-    this.loop = new Tone.Loop(time => {
-      // Do a little math to calculate which beat within the loop timer we are
-      // on.
-      const previousBeat = this.state.beat
-
-      // As the loop runs the beat as defined in the Transport will just keep
-      // counting higher. We can mod it by 16 to get where we are at within
-      // a 16 beat measure.
-      const currentBeat = (previousBeat + 1) % 16
-
-      this.setState({ beat: currentBeat })
-    }, '16n') // The 16n says our loop should be using 16th notes.
+    isLooping: false,
   }
 
   // Used to start and stop the loop from playing.
@@ -43,14 +26,14 @@ class App extends React.Component {
       Tone.Transport.start()
     }
 
-    if (this.isLooping) {
+    if (this.state.isLooping) {
       this.loop.stop()
     }
     else {
       this.loop.start(0)
     }
 
-    this.isLooping = !this.isLooping
+    this.setState({ isLooping: !this.state.isLooping })
   }
 
   // Used to add a new instrument to the loop. Instruments are defined in
@@ -76,6 +59,7 @@ class App extends React.Component {
     this.setState({ instruments: filtered })
   }
 
+  // Used to update the current state of the recording.
   updateRecording = (instrumentName, padId) => {
     this.setState(prevState => {
       // TODO: Should I spread here??
@@ -89,6 +73,24 @@ class App extends React.Component {
       return { recording: updatedRecording }
     })
   }
+
+  componentDidMount() {
+    // Configure our Tone.js loop to hae 16 notes (this essentially means every
+    // beat is a 16th note).
+    this.loop = new Tone.Loop(time => {
+      // Do a little math to calculate which beat within the loop timer we are
+      // on.
+      const previousBeat = this.state.beat
+
+      // As the loop runs the beat as defined in the Transport will just keep
+      // counting higher. We can mod it by 16 to get where we are at within
+      // a 16 beat measure.
+      const currentBeat = (previousBeat + 1) % 16
+
+      this.setState({ beat: currentBeat })
+    }, '16n') // The 16n says our loop should be using 16th notes.
+  }
+
 
   render() {
     const instrumentComponents = this.state.instruments.map(instrument => {
@@ -111,7 +113,7 @@ class App extends React.Component {
           addInstrument={ this.addInstrument }
           removeInstrument={ this.removeInstrument }
           currentBeat={ this.state.beat }
-          isLooping={ this.isLooping }
+          isLooping={ this.state.isLooping }
         />
         { instrumentComponents }
       </div>

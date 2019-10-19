@@ -55,9 +55,9 @@ class Instrument extends React.Component {
     for (let i = 0; i < 16; i++) {
       const pad = (
         <Pad
-          play={ this.play }
           key={ i }
-          cellId={ i }
+          padId={ i }
+          play={ this.play }
           isPlaying={ this.props.currentBeat === i }
           recordingState={ this.props.recording[i] }
           updateRecording={ this.updateRecording }

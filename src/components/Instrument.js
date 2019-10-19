@@ -61,6 +61,7 @@ class Instrument extends React.Component {
           isPlaying={ this.props.currentBeat === i }
           recordingState={ this.props.recording[i] }
           updateRecording={ this.updateRecording }
+          isLooping={ this.props.isLooping }
         />
       )
 

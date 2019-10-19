@@ -12,6 +12,7 @@ class Pad extends React.Component {
     this.props.updateRecording(this.props.padId)
   }
 
+  // If we're loading a recording, set it up here.
   componentDidMount() {
     if (!this.props.recordingState) return
     this.setState({ enabled: true })
@@ -31,7 +32,8 @@ class Pad extends React.Component {
     // so, style it and play the friggin' note!
     const isHit = enabled && this.props.isPlaying
     const hitClass = isHit ? 'hit' : ''
-    if (isHit) {
+
+    if (isHit && this.props.isLooping) {
       this.props.play()
     }
 

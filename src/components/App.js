@@ -102,6 +102,7 @@ class App extends React.Component {
           currentBeat={ this.state.beat }
           recording={ currRecording.data }
           updateRecording={ this.updateRecording }
+          isLooping={ this.state.isLooping }
         />
       )
     })

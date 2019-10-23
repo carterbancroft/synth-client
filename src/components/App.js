@@ -3,6 +3,7 @@ import Tone from 'tone'
 
 import Dash from './Dash'
 import Instrument from './Instrument'
+import ShareModal from './ShareModal'
 
 
 class App extends React.Component {
@@ -15,6 +16,7 @@ class App extends React.Component {
     // persisted to a DB for sharing.
     recording: [],
     isLooping: false,
+    showModal: false,
   }
 
   // Used to start and stop the loop from playing.
@@ -75,19 +77,20 @@ class App extends React.Component {
   }
 
   saveRecording = () => {
+    this.refs.saveButton.setAttribute('disabled', 'disabled')
+
     const url = 'http://localhost:4000/graphql'
 
-    const query = `mutation($recording: [InstrumentRecordingInput!]!) {
-      createComposition(
-        compositionInput: {
-          recording: $recording
-        }
-      ){
-        shortid
-      }
-    }`
     const body = JSON.stringify({
-      query,
+      query: `mutation($recording: [InstrumentRecordingInput!]!) {
+        createComposition(
+          compositionInput: {
+            recording: $recording
+          }
+        ){
+          shortid
+        }
+      }`,
       variables: {
         recording: this.state.recording
       }
@@ -104,6 +107,9 @@ class App extends React.Component {
       .then(res => {
         if (res.errors) console.dir(res.errors)
         else if (res.data) console.dir(res.data)
+
+        this.refs.saveButton.removeAttribute('disabled')
+        this.setState({ showModal: true });
       })
   }
 
@@ -151,9 +157,11 @@ class App extends React.Component {
         />
         { instrumentComponents }
         <button
+          ref="saveButton"
           key="saveRecording"
           onClick={ this.saveRecording }
           className="saveRecordingButton">Save</button>
+        <ShareModal show={ this.state.showModal } />
       </div>
     )
   }

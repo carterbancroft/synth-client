@@ -3,7 +3,7 @@ import Tone from 'tone'
 
 import Dash from './Dash'
 import Instrument from './Instrument'
-import ShareModal from './ShareModal'
+import Share from './Share'
 
 
 class App extends React.Component {
@@ -16,7 +16,6 @@ class App extends React.Component {
     // persisted to a DB for sharing.
     recording: [],
     isLooping: false,
-    showModal: false,
   }
 
   // Used to start and stop the loop from playing.
@@ -76,43 +75,6 @@ class App extends React.Component {
     })
   }
 
-  saveRecording = () => {
-    this.refs.saveButton.setAttribute('disabled', 'disabled')
-
-    const url = 'http://localhost:4000/graphql'
-
-    const body = JSON.stringify({
-      query: `mutation($recording: [InstrumentRecordingInput!]!) {
-        createComposition(
-          compositionInput: {
-            recording: $recording
-          }
-        ){
-          shortid
-        }
-      }`,
-      variables: {
-        recording: this.state.recording
-      }
-    })
-
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body
-    }
-
-    fetch(url, options)
-      .then(res => res.json())
-      .then(res => {
-        if (res.errors) console.dir(res.errors)
-        else if (res.data) console.dir(res.data)
-
-        this.refs.saveButton.removeAttribute('disabled')
-        this.setState({ showModal: true });
-      })
-  }
-
   componentDidMount() {
     // Configure our Tone.js loop to hae 16 notes (this essentially means every
     // beat is a 16th note).
@@ -129,7 +91,6 @@ class App extends React.Component {
       this.setState({ beat: currentBeat })
     }, '16n') // The 16n says our loop should be using 16th notes.
   }
-
 
   render() {
     const instrumentComponents = this.state.instruments.map(instrument => {
@@ -156,12 +117,8 @@ class App extends React.Component {
           isLooping={ this.state.isLooping }
         />
         { instrumentComponents }
-        <button
-          ref="saveButton"
-          key="saveRecording"
-          onClick={ this.saveRecording }
-          className="saveRecordingButton">Save</button>
-        <ShareModal show={ this.state.showModal } />
+
+        <Share recording={ this.state.recording } />
       </div>
     )
   }

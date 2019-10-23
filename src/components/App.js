@@ -43,7 +43,7 @@ class App extends React.Component {
     instruments.push(instrument)
 
     const recordedInstrument = {
-      name: instrument.name,
+      instrument: instrument.name,
       data: new Array(16).fill(false)
     }
     recording.push(recordedInstrument)
@@ -65,7 +65,7 @@ class App extends React.Component {
       // TODO: Should I spread here??
       const updatedRecording = prevState.recording
       updatedRecording.forEach(r => {
-        if (r.name !== instrumentName) return
+        if (r.instrument !== instrumentName) return
 
         r.data[padId] = !r.data[padId]
       })
@@ -74,18 +74,25 @@ class App extends React.Component {
     })
   }
 
-  /*saveRecording = () => {
+  saveRecording = () => {
     const url = 'http://localhost:4000/graphql'
-    console.log(JSON.stringify(this.state.recording))
-    const body = {
-      query: `mutation {
-        createComposition(compositionInput: {data:${JSON.stringify(this.state.recording)}}) {
-          shortid
+
+    const query = `mutation($recording: [InstrumentRecordingInput!]!) {
+      createComposition(
+        compositionInput: {
+          recording: $recording
         }
-      }`
+      ){
+        shortid
+      }
+    }`
+    const body = JSON.stringify({
+      query,
+      variables: {
+        recording: this.state.recording
+      }
     })
-    console.log('about to print body')
-    console.log(body)
+
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -94,8 +101,11 @@ class App extends React.Component {
 
     fetch(url, options)
       .then(res => res.json())
-      .then(res => console.log(res.data));
-  }*/
+      .then(res => {
+        if (res.errors) console.dir(res.errors)
+        else if (res.data) console.dir(res.data)
+      })
+  }
 
   componentDidMount() {
     // Configure our Tone.js loop to hae 16 notes (this essentially means every
@@ -117,7 +127,7 @@ class App extends React.Component {
 
   render() {
     const instrumentComponents = this.state.instruments.map(instrument => {
-      const currRecording = this.state.recording.find(r => r.name === instrument.name)
+      const currRecording = this.state.recording.find(r => r.instrument === instrument.name)
       return (
         <Instrument
           key={ instrument.name }

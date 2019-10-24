@@ -6,12 +6,17 @@ $grey: #555;
 $font-color: #aaa;
 $pink-purple: rgb(186,83, 244);
 
-
 #main {
   width: 954px;
   padding-top: 100px;
   margin: 0 auto;
 }
+
+.enabled {
+  background-color: $hot-pink;
+  border: 1px solid $hot-pink;
+}
+
 
 .pad {
   float: left;
@@ -21,11 +26,6 @@ $pink-purple: rgb(186,83, 244);
   border: 1px solid $grey;
   border-radius: 12px;
   cursor: pointer;
-}
-
-.enabled {
-  background-color: $hot-pink;
-  border: 1px solid $hot-pink;
 }
 
 .playing {

@@ -5,8 +5,8 @@ import App from './components/App'
 
 import 'normalize.css'
 import 'icono'
-import './style/style.scss'
-import './style/custom.scss'
+import './common/style.scss'
+import './common/custom_bootstrap.scss'
 
 
 render(<App />, document.querySelector('#main'))

@@ -116,6 +116,7 @@ class App extends React.Component {
           currentBeat={ this.state.beat }
           isLooping={ this.state.isLooping }
         />
+
         { instrumentComponents }
 
         <Share recording={ this.state.recording } />

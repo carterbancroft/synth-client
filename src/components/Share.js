@@ -1,6 +1,8 @@
 import React from 'react'
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClipboard } from '@fortawesome/free-solid-svg-icons'
 
 
 class Share extends React.Component {
@@ -65,9 +67,20 @@ class Share extends React.Component {
           toggle={ this.toggle }
           centered={ true }>
 
-          <ModalHeader toggle={ this.toggle }>Modal title</ModalHeader>
+          <ModalHeader toggle={ this.toggle }>Share</ModalHeader>
 
-          <ModalBody>{ this.state.shortid }</ModalBody>
+          <ModalBody>
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                id="shareInput"
+                defaultValue={ `${window.location.origin}?${this.state.shortid}` }/>
+                <div className="input-group-append">
+                  <span className="input-group-text"><FontAwesomeIcon icon={ faClipboard } /></span>
+                </div>
+              </div>
+          </ModalBody>
 
           <ModalFooter>
             <Button color="primary" onClick={ this.toggle }>Close</Button>{' '}

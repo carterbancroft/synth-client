@@ -1,1 +1,22 @@
+$dark-blue: rgb(30, 30, 46);
+
+$body-bg: $dark-blue;
+$modal-content-bg: $dark-blue;
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-header > .close {
+  color: white;
+}
+
+.modal-content {
+  color: #eee;
+}
+
+.modal-footer {
+  border-top: none;
+}

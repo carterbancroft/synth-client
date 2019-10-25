@@ -1,7 +1,7 @@
-$dark-blue: rgb(30, 30, 46);
+@use 'variables';
 
-$body-bg: $dark-blue;
-$modal-content-bg: $dark-blue;
+$body-bg: variables.$dark-blue;
+$modal-content-bg: variables.$dark-blue;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 

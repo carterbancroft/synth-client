@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './Share.scss'
+
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboard } from '@fortawesome/free-solid-svg-icons'
@@ -69,7 +71,7 @@ class Share extends React.Component {
 
           <ModalHeader toggle={ this.toggle }>Share</ModalHeader>
 
-          <ModalBody>
+          <ModalBody className="test">
             <div className="input-group">
               <input
                 type="text"

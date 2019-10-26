@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './Pad.scss'
+
 // This defines an individual pad for a drum machine. Right now instruments
 // are just drums and are entirely made up of these pads.
 class Pad extends React.Component {
@@ -40,7 +42,7 @@ class Pad extends React.Component {
     return (
       <div
         onClick={ this.togglePad }
-        className={ `pad ${ enabledClass } ${ playingClass } ${ hitClass }` }
+        className={ `pad ${enabledClass} ${playingClass} ${hitClass}` }
       />
     )
   }

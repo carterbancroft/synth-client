@@ -5,6 +5,7 @@ $modal-content-bg: variables.$dark-blue;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
+/* Overrides for bootstrap Modals */
 .modal-header {
   border-bottom: none;
 }

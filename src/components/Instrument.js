@@ -2,6 +2,8 @@ import React from 'react'
 
 import Pad from './Pad'
 
+import './Instrument.scss'
+
 
 // This defines a grouping of pad components to make up a single drum loop of
 // 16 beats. i.e. it's made up of 16 pads.

@@ -1,10 +1,4 @@
-$dark-blue: rgb(30, 30, 46);
-$hot-pink: rgb(224, 78, 202);
-$teal-green: rgb(0, 214, 180);
-$peach: rgb(255, 109, 138);
-$grey: #555;
-$font-color: #aaa;
-$pink-purple: rgb(186,83, 244);
+@use 'variables';
 
 #main {
   width: 954px;
@@ -13,8 +7,8 @@ $pink-purple: rgb(186,83, 244);
 }
 
 .enabled {
-  background-color: $hot-pink;
-  border: 1px solid $hot-pink;
+  background-color: variables.$hot-pink;
+  border: 1px solid variables.$hot-pink;
 }
 
 
@@ -23,17 +17,17 @@ $pink-purple: rgb(186,83, 244);
   width: 50px;
   height: 50px;
   margin: 3px;
-  border: 1px solid $grey;
+  border: 1px solid variables.$grey;
   border-radius: 12px;
   cursor: pointer;
 }
 
 .playing {
-  border: 1px solid $teal-green;
+  border: 1px solid variables.$teal-green;
 }
 
 .hit {
-  background-color: $teal-green;
+  background-color: variables.$teal-green;
 }
 
 .instrument {
@@ -42,8 +36,8 @@ $pink-purple: rgb(186,83, 244);
 }
 
 .togglePlayButton {
-  color: $dark-blue;
-  background-color: $hot-pink;
+  color: variables.$dark-blue;
+  background-color: variables.$hot-pink;
   width: 120px;
   height: 100%;
   display: block;
@@ -57,11 +51,11 @@ $pink-purple: rgb(186,83, 244);
 .togglePlayButton:focus { outline: 0; }
 
 .togglePlayButton:hover {
-  background-color: $teal-green;
+  background-color: variables.$teal-green;
 }
 
 .isLooping {
-  background-color: $teal-green !important;
+  background-color: variables.$teal-green !important;
 }
 
 .dashboard {
@@ -78,9 +72,9 @@ $pink-purple: rgb(186,83, 244);
   float: left;
   display: block;
   font-size: .9em;
-  background-color: $dark-blue;
-  color: $font-color;
-  border: 1px solid $grey;
+  background-color: variables.$dark-blue;
+  color: variables.$font-color;
+  border: 1px solid variables.$grey;
   list-style: none;
 }
 
@@ -97,10 +91,10 @@ input[type='checkbox'] {
 
 .bpmSelector {
   width: 80px;
-  border: 1px solid $grey;
+  border: 1px solid variables.$grey;
   border-radius: 5px;
-  background-color: $dark-blue;
-  color: $font-color;
+  background-color: variables.$dark-blue;
+  color: variables.$font-color;
 }
 
 .bpmSelector:focus { outline: 0; }
@@ -112,7 +106,7 @@ input[type='checkbox'] {
   height: 60px;
   border-radius: 50%;
   opacity: 0.2;
-  background-color: $teal-green;
+  background-color: variables.$teal-green;
 }
 
 .litBlinker {
@@ -126,12 +120,12 @@ input[type='checkbox'] {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: $hot-pink;
+  background-color: variables.$hot-pink;
   cursor: pointer;
 }
 
 .shareRecordingButton:hover {
-  background-color: $teal-green;
+  background-color: variables.$teal-green;
 }
 
 .shareRecordingButton:focus { outline: 0; }

@@ -1,6 +1,7 @@
 import React from 'react'
 import Tone from 'tone'
 
+import './BpmWidget.scss'
 
 class BpmWidget extends React.Component {
   state = {

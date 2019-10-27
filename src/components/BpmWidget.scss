@@ -1,0 +1,30 @@
+@use '../common/variables';
+
+.bpmContainer {
+  float: right;
+  margin-right: 10px;
+}
+
+.bpmSelector {
+  width: 80px;
+  border: 1px solid variables.$grey;
+  border-radius: 5px;
+  background-color: variables.$dark-blue;
+  color: variables.$font-color;
+}
+
+.bpmSelector:focus { outline: 0; }
+
+.blinker {
+  margin: 0 auto;
+  margin-top: 16px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  opacity: 0.2;
+  background-color: variables.$teal-green;
+}
+
+.litBlinker {
+  opacity: 1;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 
 import instruments from '../instruments'
 
+import './InstrumentPicker.scss'
 
 class InstrumentPicker extends React.Component {
   toggleInstrument = e => {

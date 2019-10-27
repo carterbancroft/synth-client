@@ -1,1 +1,20 @@
+@use '../common/variables';
+
 /* Modal styles are mostly bootstrap overrides in src/common/custom_bootstrap */
+
+.shareRecordingButton {
+  margin: 0 auto;
+  display: block;
+  margin-top: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: variables.$hot-pink;
+  cursor: pointer;
+}
+
+.shareRecordingButton:hover {
+  background-color: variables.$teal-green;
+}
+
+.shareRecordingButton:focus { outline: 0; }

@@ -6,38 +6,6 @@
   margin: 0 auto;
 }
 
-.instrument {
-  clear: left;
-  margin: 0 13px 0 13px;
-}
-
-.togglePlayButton {
-  color: variables.$dark-blue;
-  background-color: variables.$hot-pink;
-  width: 120px;
-  height: 100%;
-  display: block;
-  float: right;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 3.2em;
-}
-
-.togglePlayButton:focus { outline: 0; }
-
-.togglePlayButton:hover {
-  background-color: variables.$teal-green;
-}
-
-.isLooping {
-  background-color: variables.$teal-green !important;
-}
-
-.dashboard {
-  height: 100px;
-  margin: 15px;
-}
 
 .instrumentSelector {
   margin-top: 0;

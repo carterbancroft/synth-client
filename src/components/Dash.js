@@ -3,6 +3,8 @@ import React from 'react'
 import BpmWidget from './BpmWidget'
 import InstrumentPicker from './InstrumentPicker'
 
+import './Dash.scss'
+
 // This is basically just a container for UI elements that are not the
 // instruments themselves. Like the play button, instrument picker and BPM
 // widget.

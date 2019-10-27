@@ -5,6 +5,7 @@ import Dash from './Dash'
 import Instrument from './Instrument'
 import Share from './Share'
 
+import './App.scss'
 
 class App extends React.Component {
   state = {

@@ -5,7 +5,6 @@ import App from './components/App'
 
 import 'normalize.css'
 import 'icono'
-import './common/style.scss'
 import './common/custom_bootstrap.scss'
 
 

@@ -50,7 +50,6 @@ class Synth extends React.Component {
     }
     recording.push(recordedInstrument)
 
-
     this.setState({ instruments, recording })
   }
 
@@ -76,7 +75,42 @@ class Synth extends React.Component {
     })
   }
 
+  getRecording = shortid => {
+    const url = 'http://localhost:4000/graphql'
+
+    const body = JSON.stringify({
+      query: `query CompositionDetails($shortid: String!){
+        composition(shortid: $shortid) {
+          recording {
+            instrument
+            data
+          }
+        }
+      }`,
+      variables: { shortid }
+    })
+
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body
+    }
+
+    fetch(url, options)
+      .then(res => res.json())
+      .then(res => {
+        if (res.errors) return console.dir(res.errors)
+
+        this.setState({ recording: res.data.composition.recording })
+      })
+  }
+
   componentDidMount() {
+    const shortid = this.props.match.params.recordingId || null
+    if (shortid) {
+      this.getRecording(shortid)
+    }
+
     // Configure our Tone.js loop to hae 16 notes (this essentially means every
     // beat is a 16th note).
     this.loop = new Tone.Loop(time => {

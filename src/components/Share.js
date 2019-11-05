@@ -78,7 +78,7 @@ class Share extends React.Component {
                 type="text"
                 className="form-control"
                 id="shareInput"
-                defaultValue={ `${window.location.origin}?${this.state.shortid}` }/>
+                defaultValue={ `${window.location.origin}/${this.state.shortid}` }/>
                 <div className="input-group-append">
                   <span className="input-group-text"><FontAwesomeIcon icon={ faClipboard } /></span>
                 </div>
